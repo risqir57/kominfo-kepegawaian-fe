@@ -277,9 +277,9 @@ class VerticalLayout extends PureComponent {
         </div>
 
         <Footer {...footerProps} />
-        {appProps.disableCustomizer !== true ? (
+        {!appProps.disableCustomizer && (
           <Customizer {...customizerProps} />
-        ) : null}
+        )}
         <div
           className="sidenav-overlay"
           onClick={this.handleSidebarVisibility}

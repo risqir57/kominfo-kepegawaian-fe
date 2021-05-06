@@ -232,7 +232,7 @@ class HorizontalLayout extends PureComponent {
           footerType={customizerProps.footerType}
           hideScrollToTop={customizerProps.hideScrollToTop}
         />
-        {customizerProps.disableCustomizer !== true ? (
+        {!customizerProps.disableCustomizer && (
           <Customizer
             scrollToTop={customizerProps.hideScrollToTop}
             activeNavbar={customizerProps.navbarColor}
@@ -249,7 +249,7 @@ class HorizontalLayout extends PureComponent {
             hideScrollToTop={this.props.hideScrollToTop}
             changeMode={this.props.changeMode}
           />
-        ) : null}
+        )}
         <div
           className="sidenav-overlay"
           onClick={this.handleSidebarVisibility}
