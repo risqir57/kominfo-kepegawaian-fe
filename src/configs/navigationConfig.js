@@ -1085,7 +1085,7 @@ export const navigationConfigKominfo = [
 		groupTitle: 'Kominfo',
 	},
 	{
-		id: 'dashboard',
+		id: 'dashboardKominfo',
 		title: 'Dashboard',
 		type: 'item',
 		icon: <Icon.Home size={20} />,
@@ -1093,7 +1093,7 @@ export const navigationConfigKominfo = [
 		navLink: '/kominfo',
 	},
 	{
-		id: 'users',
+		id: 'usersKominfo',
 		title: 'User',
 		type: 'item',
 		icon: <Icon.User size={20} />,

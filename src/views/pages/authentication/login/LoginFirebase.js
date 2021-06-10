@@ -2,9 +2,8 @@ import React from 'react';
 import { CardBody, FormGroup, Form, Input, Button, Label } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Checkbox from '../../../../components/@vuexy/checkbox/CheckboxesVuexy';
-import { Mail, Lock, Check, Facebook, Twitter, GitHub } from 'react-feather';
+import { Mail, Lock, Check } from 'react-feather';
 import { history } from '../../../../history';
-import googleSvg from '../../../../assets/img/svg/google.svg';
 import { connect } from 'react-redux';
 import GoogleButton from 'react-google-button';
 import {

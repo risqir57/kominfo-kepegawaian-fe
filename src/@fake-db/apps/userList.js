@@ -1,5 +1,4 @@
 import mock from '../mock';
-import moment from 'moment';
 
 const users = [
 	{
