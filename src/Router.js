@@ -9,7 +9,7 @@ import knowledgeBaseQuestion from './views/pages/knowledge-base/Questions';
 import { ContextLayout } from './utility/context/Layout';
 
 // Route-based code splitting
-const analyticsDashboard = lazy(() => import('./views/dashboard/analytics/AnalyticsDashboard'));
+// const analyticsDashboard = lazy(() => import('./views/dashboard/analytics/AnalyticsDashboard'));
 const ecommerceDashboard = lazy(() => import('./views/dashboard/ecommerce/EcommerceDashboard'));
 const email = lazy(() => import('./views/apps/email/Email'));
 const chat = lazy(() => import('./views/apps/chat/Chat'));

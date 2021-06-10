@@ -10,6 +10,7 @@ import {
 	DropdownMenu,
 	DropdownItem,
 	DropdownToggle,
+	Button,
 } from 'reactstrap';
 import axios from 'axios';
 import { ContextLayout } from '../../../../../utility/context/Layout';
@@ -312,13 +313,14 @@ class UsersList extends React.Component {
 										</div>
 										<div className="filter-actions d-flex">
 											<Input
-												className="w-50 mr-1 mb-1 mb-sm-0"
+												className="mr-1 mb-1 mb-sm-0"
+												style={{ width: '45%' }}
 												type="text"
 												placeholder="search..."
 												onChange={e => this.updateSearchQuery(e.target.value)}
 												value={this.state.searchVal}
 											/>
-											<div className="dropdown actions-dropdown">
+											<div className="dropdown actions-dropdown mr-1">
 												<UncontrolledButtonDropdown>
 													<DropdownToggle className="px-2 py-75" color="white">
 														Actions
@@ -343,6 +345,13 @@ class UsersList extends React.Component {
 														</DropdownItem>
 													</DropdownMenu>
 												</UncontrolledButtonDropdown>
+											</div>
+											<div>
+												<Button.Ripple
+													color="primary"
+													onClick={() => history.push('/kominfo/employments/pns/1/edit')}>
+													Add
+												</Button.Ripple>
 											</div>
 										</div>
 									</div>
