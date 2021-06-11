@@ -1,15 +1,42 @@
 import React, { Fragment } from 'react';
-import { Card, CardHeader, CardTitle, CardBody, Media, Row, Col, Button, Table } from 'reactstrap';
-import { Edit, Trash, Lock, Check } from 'react-feather';
+import {
+	Card,
+	CardHeader,
+	CardTitle,
+	CardBody,
+	Media,
+	Row,
+	Col,
+	Button,
+	Nav,
+	NavItem,
+	NavLink,
+	TabContent,
+	TabPane,
+} from 'reactstrap';
+import { Edit, Trash, Info, User } from 'react-feather';
 import { Link } from 'react-router-dom';
-import Checkbox from '../../../../../components/@vuexy/checkbox/CheckboxesVuexy';
+import classnames from 'classnames';
 import userImg from '../../../../../assets/img/portrait/small/avatar-s-18.jpg';
 import '../../../../../assets/scss/pages/users.scss';
-import { navigationConfigKominfo } from '../../../../../configs/navigationConfig';
+import 'flatpickr/dist/themes/light.css';
+import '../../../../../assets/scss/plugins/forms/flatpickr/flatpickr.scss';
+import Personal from './Personal';
+import Employment from './Employment';
 class UserView extends React.Component {
+	state = {
+		activeTab: '1',
+	};
+
+	toggle = tab => {
+		this.setState({
+			activeTab: tab,
+		});
+	};
+
 	render() {
 		return (
-			<React.Fragment>
+			<Fragment>
 				<Row>
 					<Col sm="12">
 						<Card>
@@ -35,12 +62,12 @@ class UserView extends React.Component {
 													<Col sm="9" md="6" lg="5">
 														<div className="users-page-view-table">
 															<div className="d-flex user-info">
-																<div className="user-info-title font-weight-bold">Username</div>
-																<div>crystal</div>
+																<div className="user-info-title font-weight-bold">Nama</div>
+																<div>Crystal Hamilton</div>
 															</div>
 															<div className="d-flex user-info">
-																<div className="user-info-title font-weight-bold">Name</div>
-																<div>Crystal Hamilton</div>
+																<div className="user-info-title font-weight-bold">NIP</div>
+																<div>0482947839</div>
 															</div>
 															<div className="d-flex user-info">
 																<div className="user-info-title font-weight-bold">Email</div>
@@ -54,16 +81,35 @@ class UserView extends React.Component {
 														<div className="users-page-view-table">
 															<div className="d-flex user-info">
 																<div className="user-info-title font-weight-bold">Status</div>
-																<div>active</div>
+																<div
+																	style={{
+																		display: 'flex',
+																		flexDirection: 'row',
+																		justifyContent: 'center',
+																		alignItems: 'center',
+																		alignContent: 'center',
+																	}}>
+																	<div
+																		className="bg-success"
+																		style={{
+																			height: '10px',
+																			width: '10px',
+																			borderRadius: '50%',
+																			display: 'inline-block',
+																			margin: '0 5px',
+																		}}
+																	/>
+																	active
+																</div>
+															</div>
+															<div className="d-flex user-info">
+																<div className="user-info-title font-weight-bold">No. HP</div>
+																<div>+62 8233172688</div>
 															</div>
 															<div className="d-flex user-info">
 																<div className="user-info-title font-weight-bold">Satker</div>
-																<div>admin</div>
-															</div>
-															<div className="d-flex user-info">
-																<div className="user-info-title font-weight-bold">NIP</div>
 																<div>
-																	<span>0482947839</span>
+																	<span>Admin</span>
 																</div>
 															</div>
 														</div>
@@ -88,170 +134,66 @@ class UserView extends React.Component {
 							</CardBody>
 						</Card>
 					</Col>
-					<Col sm="12" md="6">
-						<Card>
-							<CardHeader>
-								<CardTitle>Information</CardTitle>
-							</CardHeader>
-							<CardBody>
-								<div className="users-page-view-table">
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Birth Date</div>
-										<div> 28 January 1998</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Mobile</div>
-										<div>+65958951757</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Website</div>
-										<div className="text-truncate">
-											<span>https://rowboat.com/insititious/Crystal</span>
-										</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Languages</div>
-										<div className="text-truncate">
-											<span>English, French</span>
-										</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Gender</div>
-										<div className="text-truncate">
-											<span>Female</span>
-										</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Contact</div>
-										<div className="text-truncate">
-											<span>email, message, phone</span>
-										</div>
-									</div>
-								</div>
-							</CardBody>
-						</Card>
-					</Col>
-					<Col sm="12" md="6">
-						<Card>
-							<CardHeader>
-								<CardTitle>Social Links</CardTitle>
-							</CardHeader>
-							<CardBody>
-								<div className="users-page-view-table">
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Twitter</div>
-										<div className="text-truncate">
-											<span>https://twitter.com/crystal</span>
-										</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Facebook</div>
-										<div className="text-truncate">
-											<span>https://www.facebook.com/crystal</span>
-										</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Instagram</div>
-										<div className="text-truncate">
-											<span>https://www.instagram.com/crystal</span>
-										</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Github</div>
-										<div className="text-truncate">
-											<span>https://github.com/crystal</span>
-										</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">CodePen</div>
-										<div className="text-truncate">
-											<span>https://codepen.io/crystal</span>
-										</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Slack</div>
-										<div className="text-truncate">
-											<span>@crystal</span>
-										</div>
-									</div>
-								</div>
-							</CardBody>
-						</Card>
-					</Col>
 					<Col sm="12">
 						<Card>
-							<CardHeader className="border-bottom pb-1 mx-2 px-0">
-								<CardTitle>
-									<Lock size={18} />
-									<span className="align-middle ml-50">Permissions</span>
-								</CardTitle>
-							</CardHeader>
-							<CardBody>
-								{' '}
-								<Table className="permissions-table" borderless responsive>
-									<thead>
-										<tr>
-											<th>Module</th>
-											<th>Read</th>
-											<th>Write</th>
-											<th>Create</th>
-											<th>Delete</th>
-										</tr>
-									</thead>
-									<tbody>
-										{navigationConfigKominfo.map((nav, index) =>
-											'title' in nav && nav.id !== 'dashboard' ? (
-												<tr key={index.toString()}>
-													<td>{nav.title}</td>
-													<td>
-														<Checkbox
-															disabled
-															color="primary"
-															icon={<Check className="vx-icon" size={16} />}
-															label=""
-															defaultChecked={true}
-														/>
-													</td>
-													<td>
-														<Checkbox
-															disabled
-															color="primary"
-															icon={<Check className="vx-icon" size={16} />}
-															label=""
-															defaultChecked={false}
-														/>
-													</td>
-													<td>
-														<Checkbox
-															disabled
-															color="primary"
-															icon={<Check className="vx-icon" size={16} />}
-															label=""
-															defaultChecked={false}
-														/>
-													</td>
-													<td>
-														{' '}
-														<Checkbox
-															disabled
-															color="primary"
-															icon={<Check className="vx-icon" size={16} />}
-															label=""
-															defaultChecked={true}
-														/>
-													</td>
-												</tr>
-											) : (
-												<Fragment />
-											)
-										)}
-									</tbody>
-								</Table>
+							<CardBody className="pt-2">
+								<Nav tabs>
+									<NavItem>
+										<NavLink
+											className={classnames({
+												active: this.state.activeTab === '1',
+											})}
+											onClick={() => {
+												this.toggle('1');
+											}}>
+											<User size={16} />
+											<span className="align-middle ml-50">Data Personal</span>
+										</NavLink>
+									</NavItem>
+									<NavItem>
+										<NavLink
+											className={classnames({
+												active: this.state.activeTab === '2',
+											})}
+											onClick={() => {
+												this.toggle('2');
+											}}>
+											<Info size={16} />
+											<span className="align-middle ml-50">Data Kepegawaian</span>
+										</NavLink>
+									</NavItem>
+									<NavItem>
+										<NavLink
+											className={classnames({
+												active: this.state.activeTab === '3',
+											})}
+											onClick={() => {
+												this.toggle('3');
+											}}>
+											<Info size={16} />
+											<span className="align-middle ml-50">Data Lain-lain</span>
+										</NavLink>
+									</NavItem>
+								</Nav>
+								<TabContent activeTab={this.state.activeTab}>
+									<TabPane tabId="1">
+										<Personal />
+									</TabPane>
+									<TabPane tabId="2">
+										<Employment />
+									</TabPane>
+									<TabPane tabId="3">
+										<p>
+											Reference site about Lorem Ipsum, giving information on its origins, as well
+											as a random Lipsum generator.
+										</p>
+									</TabPane>
+								</TabContent>
 							</CardBody>
 						</Card>
 					</Col>
 				</Row>
-			</React.Fragment>
+			</Fragment>
 		);
 	}
 }

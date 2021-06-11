@@ -13,18 +13,10 @@ import {
 	NavLink,
 	TabContent,
 	TabPane,
-	FormGroup,
-	Form,
-	Input,
-	Label,
 } from 'reactstrap';
 import { Edit, Trash, Info, User } from 'react-feather';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
-import Flatpickr from 'react-flatpickr';
-import Select from 'react-select';
-import { history } from '../../../../../history';
-import Radio from '../../../../../components/@vuexy/radio/RadioVuexy';
 import userImg from '../../../../../assets/img/portrait/small/avatar-s-18.jpg';
 import '../../../../../assets/scss/pages/users.scss';
 import 'flatpickr/dist/themes/light.css';
