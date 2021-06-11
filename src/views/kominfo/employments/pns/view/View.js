@@ -1,10 +1,35 @@
 import React, { Fragment } from 'react';
-import { Card, CardHeader, CardTitle, CardBody, Media, Row, Col, Button } from 'reactstrap';
-import { Edit, Trash } from 'react-feather';
+import {
+	Card,
+	CardHeader,
+	CardTitle,
+	CardBody,
+	Media,
+	Row,
+	Col,
+	Button,
+	Nav,
+	NavItem,
+	NavLink,
+	TabContent,
+	TabPane,
+} from 'reactstrap';
+import { Edit, Trash, Info } from 'react-feather';
 import { Link } from 'react-router-dom';
+import classnames from 'classnames';
 import userImg from '../../../../../assets/img/portrait/small/avatar-s-18.jpg';
 import '../../../../../assets/scss/pages/users.scss';
 class UserView extends React.Component {
+	state = {
+		activeTab: '1',
+	};
+
+	toggle = tab => {
+		this.setState({
+			activeTab: tab,
+		});
+	};
+
 	render() {
 		return (
 			<Fragment>
@@ -86,93 +111,67 @@ class UserView extends React.Component {
 							</CardBody>
 						</Card>
 					</Col>
-					<Col sm="12" md="6">
+					<Col sm="12">
 						<Card>
-							<CardHeader>
-								<CardTitle>Information</CardTitle>
-							</CardHeader>
-							<CardBody>
-								<div className="users-page-view-table">
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Birth Date</div>
-										<div> 28 January 1998</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Mobile</div>
-										<div>+65958951757</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Website</div>
-										<div className="text-truncate">
-											<span>https://rowboat.com/insititious/Crystal</span>
-										</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Languages</div>
-										<div className="text-truncate">
-											<span>English, French</span>
-										</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Gender</div>
-										<div className="text-truncate">
-											<span>Female</span>
-										</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Contact</div>
-										<div className="text-truncate">
-											<span>email, message, phone</span>
-										</div>
-									</div>
-								</div>
-							</CardBody>
-						</Card>
-					</Col>
-					<Col sm="12" md="6">
-						<Card>
-							<CardHeader>
-								<CardTitle>Social Links</CardTitle>
-							</CardHeader>
-							<CardBody>
-								<div className="users-page-view-table">
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Twitter</div>
-										<div className="text-truncate">
-											<span>https://twitter.com/crystal</span>
-										</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Facebook</div>
-										<div className="text-truncate">
-											<span>https://www.facebook.com/crystal</span>
-										</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Instagram</div>
-										<div className="text-truncate">
-											<span>https://www.instagram.com/crystal</span>
-										</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Github</div>
-										<div className="text-truncate">
-											<span>https://github.com/crystal</span>
-										</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">CodePen</div>
-										<div className="text-truncate">
-											<span>https://codepen.io/crystal</span>
-										</div>
-									</div>
-									<div className="d-flex user-info">
-										<div className="user-info-title font-weight-bold">Slack</div>
-										<div className="text-truncate">
-											<span>@crystal</span>
-										</div>
-									</div>
-								</div>
+							<CardBody className="pt-2">
+								<Nav tabs>
+									<NavItem>
+										<NavLink
+											className={classnames({
+												active: this.state.activeTab === '1',
+											})}
+											onClick={() => {
+												this.toggle('1');
+											}}>
+											<Info size={16} />
+											<span className="align-middle ml-50">Account</span>
+										</NavLink>
+									</NavItem>
+									<NavItem>
+										<NavLink
+											className={classnames({
+												active: this.state.activeTab === '2',
+											})}
+											onClick={() => {
+												this.toggle('2');
+											}}>
+											<Info size={16} />
+											<span className="align-middle ml-50">Information</span>
+										</NavLink>
+									</NavItem>
+									<NavItem>
+										<NavLink
+											className={classnames({
+												active: this.state.activeTab === '3',
+											})}
+											onClick={() => {
+												this.toggle('3');
+											}}>
+											<Info size={16} />
+											<span className="align-middle ml-50">Social</span>
+										</NavLink>
+									</NavItem>
+								</Nav>
+								<TabContent activeTab={this.state.activeTab}>
+									<TabPane tabId="1">
+										<p>
+											Reference site about Lorem Ipsum, giving information on its origins, as well
+											as a random Lipsum generator.
+										</p>
+									</TabPane>
+									<TabPane tabId="2">
+										<p>
+											Reference site about Lorem Ipsum, giving information on its origins, as well
+											as a random Lipsum generator.
+										</p>
+									</TabPane>
+									<TabPane tabId="3">
+										<p>
+											Reference site about Lorem Ipsum, giving information on its origins, as well
+											as a random Lipsum generator.
+										</p>
+									</TabPane>
+								</TabContent>
 							</CardBody>
 						</Card>
 					</Col>

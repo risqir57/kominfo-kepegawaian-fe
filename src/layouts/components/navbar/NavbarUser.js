@@ -29,10 +29,6 @@ const UserDropdown = props => {
 				<Icon.User size={14} className="mr-50" />
 				<span className="align-middle">Edit Profile</span>
 			</DropdownItem>
-			<DropdownItem tag="a" href="#" onClick={e => handleNavigation(e, '/todo/all')}>
-				<Icon.CheckSquare size={14} className="mr-50" />
-				<span className="align-middle">Tasks</span>
-			</DropdownItem>
 			<DropdownItem divider />
 			<DropdownItem
 				tag="a"
