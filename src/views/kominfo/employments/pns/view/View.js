@@ -13,12 +13,24 @@ import {
 	NavLink,
 	TabContent,
 	TabPane,
+	FormGroup,
+	Form,
+	Input,
+	Label,
 } from 'reactstrap';
-import { Edit, Trash, Info } from 'react-feather';
+import { Edit, Trash, Info, User } from 'react-feather';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
+import Flatpickr from 'react-flatpickr';
+import Select from 'react-select';
+import { history } from '../../../../../history';
+import Radio from '../../../../../components/@vuexy/radio/RadioVuexy';
 import userImg from '../../../../../assets/img/portrait/small/avatar-s-18.jpg';
 import '../../../../../assets/scss/pages/users.scss';
+import 'flatpickr/dist/themes/light.css';
+import '../../../../../assets/scss/plugins/forms/flatpickr/flatpickr.scss';
+import Personal from './Personal';
+import Employment from './Employment';
 class UserView extends React.Component {
 	state = {
 		activeTab: '1',
@@ -58,12 +70,12 @@ class UserView extends React.Component {
 													<Col sm="9" md="6" lg="5">
 														<div className="users-page-view-table">
 															<div className="d-flex user-info">
-																<div className="user-info-title font-weight-bold">Username</div>
-																<div>crystal</div>
+																<div className="user-info-title font-weight-bold">Nama</div>
+																<div>Crystal Hamilton</div>
 															</div>
 															<div className="d-flex user-info">
-																<div className="user-info-title font-weight-bold">Name</div>
-																<div>Crystal Hamilton</div>
+																<div className="user-info-title font-weight-bold">NIP</div>
+																<div>0482947839</div>
 															</div>
 															<div className="d-flex user-info">
 																<div className="user-info-title font-weight-bold">Email</div>
@@ -77,16 +89,35 @@ class UserView extends React.Component {
 														<div className="users-page-view-table">
 															<div className="d-flex user-info">
 																<div className="user-info-title font-weight-bold">Status</div>
-																<div>active</div>
+																<div
+																	style={{
+																		display: 'flex',
+																		flexDirection: 'row',
+																		justifyContent: 'center',
+																		alignItems: 'center',
+																		alignContent: 'center',
+																	}}>
+																	<div
+																		className="bg-success"
+																		style={{
+																			height: '10px',
+																			width: '10px',
+																			borderRadius: '50%',
+																			display: 'inline-block',
+																			margin: '0 5px',
+																		}}
+																	/>
+																	active
+																</div>
+															</div>
+															<div className="d-flex user-info">
+																<div className="user-info-title font-weight-bold">No. HP</div>
+																<div>+62 8233172688</div>
 															</div>
 															<div className="d-flex user-info">
 																<div className="user-info-title font-weight-bold">Satker</div>
-																<div>admin</div>
-															</div>
-															<div className="d-flex user-info">
-																<div className="user-info-title font-weight-bold">NIP</div>
 																<div>
-																	<span>0482947839</span>
+																	<span>Admin</span>
 																</div>
 															</div>
 														</div>
@@ -123,8 +154,8 @@ class UserView extends React.Component {
 											onClick={() => {
 												this.toggle('1');
 											}}>
-											<Info size={16} />
-											<span className="align-middle ml-50">Account</span>
+											<User size={16} />
+											<span className="align-middle ml-50">Data Personal</span>
 										</NavLink>
 									</NavItem>
 									<NavItem>
@@ -136,7 +167,7 @@ class UserView extends React.Component {
 												this.toggle('2');
 											}}>
 											<Info size={16} />
-											<span className="align-middle ml-50">Information</span>
+											<span className="align-middle ml-50">Data Kepegawaian</span>
 										</NavLink>
 									</NavItem>
 									<NavItem>
@@ -148,22 +179,16 @@ class UserView extends React.Component {
 												this.toggle('3');
 											}}>
 											<Info size={16} />
-											<span className="align-middle ml-50">Social</span>
+											<span className="align-middle ml-50">Data Lain-lain</span>
 										</NavLink>
 									</NavItem>
 								</Nav>
 								<TabContent activeTab={this.state.activeTab}>
 									<TabPane tabId="1">
-										<p>
-											Reference site about Lorem Ipsum, giving information on its origins, as well
-											as a random Lipsum generator.
-										</p>
+										<Personal />
 									</TabPane>
 									<TabPane tabId="2">
-										<p>
-											Reference site about Lorem Ipsum, giving information on its origins, as well
-											as a random Lipsum generator.
-										</p>
+										<Employment />
 									</TabPane>
 									<TabPane tabId="3">
 										<p>

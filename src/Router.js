@@ -122,7 +122,9 @@ const kominfoUsers = lazy(() => import('./views/kominfo/user/list/List'));
 const kominfoUserView = lazy(() => import('./views/kominfo/user/view/View'));
 const kominfoUserEdit = lazy(() => import('./views/kominfo/user/edit/Edit'));
 const kominfoEmploymentPns = lazy(() => import('./views/kominfo/employments/pns/list/List'));
-const kominfoEmploymentPnsView = lazy(() => import('./views/kominfo/employments/pns/view/View'));
+const kominfoEmploymentPnsView = lazy(() =>
+	import('./views/kominfo/employments/pns/view/View.jsx')
+);
 const kominfoEmploymentPnsEdit = lazy(() => import('./views/kominfo/employments/pns/edit/Edit'));
 const kominfoEmploymentPpnpn = lazy(() => import('./views/kominfo/employments/ppnpn/list/List'));
 const kominfoEmploymentPpnpnView = lazy(() =>
