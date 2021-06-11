@@ -1,15 +1,13 @@
 import React, { Fragment } from 'react';
-import { Card, CardHeader, CardTitle, CardBody, Media, Row, Col, Button, Table } from 'reactstrap';
-import { Edit, Trash, Lock, Check } from 'react-feather';
+import { Card, CardHeader, CardTitle, CardBody, Media, Row, Col, Button } from 'reactstrap';
+import { Edit, Trash } from 'react-feather';
 import { Link } from 'react-router-dom';
-import Checkbox from '../../../../../components/@vuexy/checkbox/CheckboxesVuexy';
 import userImg from '../../../../../assets/img/portrait/small/avatar-s-18.jpg';
 import '../../../../../assets/scss/pages/users.scss';
-import { navigationConfigKominfo } from '../../../../../configs/navigationConfig';
 class UserView extends React.Component {
 	render() {
 		return (
-			<React.Fragment>
+			<Fragment>
 				<Row>
 					<Col sm="12">
 						<Card>
@@ -178,80 +176,8 @@ class UserView extends React.Component {
 							</CardBody>
 						</Card>
 					</Col>
-					<Col sm="12">
-						<Card>
-							<CardHeader className="border-bottom pb-1 mx-2 px-0">
-								<CardTitle>
-									<Lock size={18} />
-									<span className="align-middle ml-50">Permissions</span>
-								</CardTitle>
-							</CardHeader>
-							<CardBody>
-								{' '}
-								<Table className="permissions-table" borderless responsive>
-									<thead>
-										<tr>
-											<th>Module</th>
-											<th>Read</th>
-											<th>Write</th>
-											<th>Create</th>
-											<th>Delete</th>
-										</tr>
-									</thead>
-									<tbody>
-										{navigationConfigKominfo.map((nav, index) =>
-											'title' in nav && nav.id !== 'dashboard' ? (
-												<tr key={index.toString()}>
-													<td>{nav.title}</td>
-													<td>
-														<Checkbox
-															disabled
-															color="primary"
-															icon={<Check className="vx-icon" size={16} />}
-															label=""
-															defaultChecked={true}
-														/>
-													</td>
-													<td>
-														<Checkbox
-															disabled
-															color="primary"
-															icon={<Check className="vx-icon" size={16} />}
-															label=""
-															defaultChecked={false}
-														/>
-													</td>
-													<td>
-														<Checkbox
-															disabled
-															color="primary"
-															icon={<Check className="vx-icon" size={16} />}
-															label=""
-															defaultChecked={false}
-														/>
-													</td>
-													<td>
-														{' '}
-														<Checkbox
-															disabled
-															color="primary"
-															icon={<Check className="vx-icon" size={16} />}
-															label=""
-															defaultChecked={true}
-														/>
-													</td>
-												</tr>
-											) : (
-												<Fragment />
-											)
-										)}
-									</tbody>
-								</Table>
-							</CardBody>
-						</Card>
-					</Col>
 				</Row>
-			</React.Fragment>
+			</Fragment>
 		);
 	}
 }
