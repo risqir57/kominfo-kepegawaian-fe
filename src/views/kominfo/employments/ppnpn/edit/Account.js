@@ -1,25 +1,40 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Select from 'react-select';
-import { Media, Row, Col, Button, Form, Input, Label, FormGroup, Table } from 'reactstrap';
-import { Check, Lock } from 'react-feather';
+import { Media, Row, Col, Button, Form, Input, Label, FormGroup } from 'reactstrap';
 import Radio from '../../../../../components/@vuexy/radio/RadioVuexy';
-import Checkbox from '../../../../../components/@vuexy/checkbox/CheckboxesVuexy';
 import userImg from '../../../../../assets/img/portrait/small/avatar-s-18.jpg';
 import '../../../../../assets/scss/plugins/forms/react-select/_react-select.scss';
 import { history } from '../../../../../history';
-import { navigationConfigKominfo } from '../../../../../configs/navigationConfig';
+import Flatpickr from 'react-flatpickr';
+import 'flatpickr/dist/themes/light.css';
+import '../../../../../assets/scss/plugins/forms/flatpickr/flatpickr.scss';
 class UserAccountTab extends React.Component {
 	state = {
-		satker: [
-			{ value: 'user', label: 'User' },
-			{ value: 'staff', label: 'Staff' },
-			{ value: 'satker', label: 'Satker' },
+		blood: [
+			{ value: 'pilih', label: 'Silahkan Pilih' },
+			{ value: 'A', label: 'A' },
+			{ value: 'O', label: 'O' },
 		],
+		agama: [
+			{ value: 'pilih', label: 'Silahkan Pilih' },
+			{ value: 'islam', label: 'Islam' },
+			{ value: 'katolik', label: 'Katolik' },
+			{ value: 'hindu', label: 'Hindu' },
+			{ value: 'budha', label: 'Budha' },
+		],
+		merrid: [
+			{ value: 'pilih', label: 'Silahkan Pilih' },
+			{ value: 'islam', label: 'Pilihan A' },
+			{ value: 'katolik', label: 'Pilihan B' },
+			{ value: 'hindu', label: 'Pilihan C' },
+			{ value: 'budha', label: 'Pilihan D' },
+		],
+		birthDate: new Date(),
 	};
 	render() {
 		return (
 			<Row>
-				<Col sm="12">
+				<Col md="6" sm="12">
 					<Media className="mb-2">
 						<Media className="mr-2 my-25" left href="#">
 							<Media
@@ -44,53 +59,77 @@ class UserAccountTab extends React.Component {
 						</Media>
 					</Media>
 				</Col>
+				<Col md="6" sm="12">
+					<Form onSubmit={e => e.preventDefault()}>
+						<Row>
+							<Col md="12" sm="12">
+								<FormGroup>
+									<Label for="nip">NIP</Label>
+									<Input type="text" defaultValue="crystal" id="nip" placeholder="NIP" />
+								</FormGroup>
+							</Col>
+							<Col md="12" sm="12">
+								<FormGroup>
+									<Label for="satker">Satuan Kerja</Label>
+									<Input
+										type="text"
+										defaultValue="crystal"
+										id="satker"
+										placeholder="Satuan Kerja"
+									/>
+								</FormGroup>
+							</Col>
+						</Row>
+					</Form>
+				</Col>
 				<Col sm="12">
 					<Form onSubmit={e => e.preventDefault()}>
 						<Row>
 							<Col md="6" sm="12">
 								<FormGroup>
-									<Label for="username">Username</Label>
-									<Input type="text" defaultValue="crystal" id="username" placeholder="Username" />
+									<Label for="name">Nama Lengkap</Label>
+									<Input type="text" defaultValue="crystal" id="name" placeholder="Nama Lengkap" />
 								</FormGroup>
 							</Col>
 							<Col md="6" sm="12">
 								<FormGroup>
-									<Label className="d-block mb-50">Status</Label>
-									<div className="d-inline-block mr-1">
-										<Radio label="Active" color="primary" defaultChecked={true} name="status" />
-									</div>
-									<div className="d-inline-block mr-1">
-										<Radio label="Close" color="primary" defaultChecked={false} name="status" />
-									</div>
-									<div className="d-inline-block">
-										<Radio label="Pending" color="primary" defaultChecked={false} name="status" />
-									</div>
-								</FormGroup>
-							</Col>
-
-							<Col md="6" sm="12">
-								<FormGroup>
-									<Label for="name">Name</Label>
-									<Input type="text" defaultValue="Crystal Hamilton" id="name" placeholder="Name" />
-								</FormGroup>
-							</Col>
-							<Col md="6" sm="12">
-								<FormGroup>
-									<Label for="role">Satker</Label>
-									<Select
-										className="React"
-										classNamePrefix="select"
-										defaultValue={this.state.satker[0]}
-										name="color"
-										options={this.state.satker}
+									<Label for="birthDate">Tempat Lahir</Label>
+									<Input
+										type="text"
+										defaultValue="crystal"
+										id="birthDate"
+										placeholder="Tempat Lahir"
 									/>
 								</FormGroup>
 							</Col>
 							<Col md="6" sm="12">
 								<FormGroup>
-									<Label for="email">Email</Label>
+									<Label for="officeEmail">Email Resmi</Label>
 									<Input
-										type="text"
+										type="email"
+										defaultValue="crystalhamilton@kominfo.co.id"
+										id="officeEmail"
+										placeholder="Email"
+									/>
+								</FormGroup>
+							</Col>
+							<Col md="6" sm="12">
+								<FormGroup>
+									<Label for="birthDate">Tanggal Lahir</Label>
+									<Flatpickr
+										className="form-control"
+										value={this.state.birthDate}
+										onChange={date => {
+											this.setState({ birthDate: date });
+										}}
+									/>
+								</FormGroup>
+							</Col>
+							<Col md="6" sm="12">
+								<FormGroup>
+									<Label for="email">Email Pribadi</Label>
+									<Input
+										type="email"
 										defaultValue="crystalhamilton@gmail.com"
 										id="email"
 										placeholder="Email"
@@ -99,83 +138,126 @@ class UserAccountTab extends React.Component {
 							</Col>
 							<Col md="6" sm="12">
 								<FormGroup>
-									<Label for="company">NIP</Label>
-									<Input
-										type="text"
-										id="nip"
-										name="nip"
-										defaultValue="0923648279"
-										placeholder="NIP"
+									<Label className="d-block mb-50">Jenis Kelamin</Label>
+									<div className="d-inline-block mr-1">
+										<Radio label="Laki-Laki" color="primary" defaultChecked={true} name="gender" />
+									</div>
+									<div className="d-inline-block mr-1">
+										<Radio label="Wanita" color="primary" defaultChecked={false} name="gender" />
+									</div>
+								</FormGroup>
+							</Col>
+							<Col md="6" sm="12">
+								<FormGroup>
+									<Label for="telphone">Telepon</Label>
+									<Input type="tel" id="telphone" placeholder="+120939093" />
+								</FormGroup>
+							</Col>
+							<Col md="6" sm="12">
+								<FormGroup>
+									<Label for="role">Golongan Darah</Label>
+									<Select
+										className="React"
+										classNamePrefix="select"
+										defaultValue={this.state.blood[0]}
+										name="color"
+										options={this.state.blood}
 									/>
 								</FormGroup>
 							</Col>
-							<Col sm="12">
-								<div className="permissions border px-2">
-									<div className="title pt-2 pb-0">
-										<Lock size={19} />
-										<span className="text-bold-500 font-medium-2 ml-50">Permissions</span>
-										<hr />
-									</div>
-									<Table borderless responsive>
-										<thead>
-											<tr>
-												<th>Module Permission</th>
-												<th>Read</th>
-												<th>Write</th>
-												<th>Create</th>
-												<th>Delete</th>
-											</tr>
-										</thead>
-										<tbody>
-											{navigationConfigKominfo.map((nav, index) =>
-												'title' in nav && nav.id !== 'dashboard' ? (
-													<tr key={index.toString()}>
-														<td>{nav.title}</td>
-														<td>
-															<Checkbox
-																color="primary"
-																icon={<Check className="vx-icon" size={16} />}
-																label=""
-																defaultChecked={true}
-															/>
-														</td>
-														<td>
-															<Checkbox
-																color="primary"
-																icon={<Check className="vx-icon" size={16} />}
-																label=""
-																defaultChecked={false}
-															/>
-														</td>
-														<td>
-															<Checkbox
-																color="primary"
-																icon={<Check className="vx-icon" size={16} />}
-																label=""
-																defaultChecked={false}
-															/>
-														</td>
-														<td>
-															{' '}
-															<Checkbox
-																color="primary"
-																icon={<Check className="vx-icon" size={16} />}
-																label=""
-																defaultChecked={true}
-															/>
-														</td>
-													</tr>
-												) : (
-													<Fragment />
-												)
-											)}
-										</tbody>
-									</Table>
-								</div>
+							<Col md="6" sm="12">
+								<FormGroup>
+									<Label for="phone">Nomor HP</Label>
+									<Input type="tel" id="phone" placeholder="+629873984792" />
+								</FormGroup>
+							</Col>
+							<Col md="6" sm="12">
+								<FormGroup>
+									<Label for="agam">Agama</Label>
+									<Select
+										className="React"
+										classNamePrefix="select"
+										defaultValue={this.state.agama[0]}
+										name="color"
+										options={this.state.agama}
+									/>
+								</FormGroup>
+							</Col>
+							<Col md="6" sm="12">
+								<FormGroup>
+									<Label for="merrid">Status Marital</Label>
+									<Select
+										className="React"
+										classNamePrefix="select"
+										defaultValue={this.state.merrid[0]}
+										name="color"
+										options={this.state.merrid}
+									/>
+								</FormGroup>
+							</Col>
+							<Col md="6" sm="12">
+								<FormGroup>
+									<Label for="jurusan">Jurusan Pendidikan</Label>
+									<Input type="text" id="jurusan" placeholder="ex: Akutansi" />
+								</FormGroup>
+							</Col>
+							<Col md="6" sm="12">
+								<FormGroup>
+									<Label for="education">Pendidikan</Label>
+									<Input type="text" id="education" placeholder="ex: SMA, S1, S2, S3" />
+								</FormGroup>
+							</Col>
+							<Col md="6" sm="12">
+								<FormGroup>
+									<Label for="school">Sekolah/Universitas</Label>
+									<Input type="text" id="school" placeholder="ex: Binus" />
+								</FormGroup>
+							</Col>
+							<Col md="12" sm="12">
+								<FormGroup>
+									<Label for="address">Alamat</Label>
+									<Input
+										type="textarea"
+										name="text"
+										id="address"
+										rows="4"
+										placeholder="Alamat lengkap"
+									/>
+								</FormGroup>
+							</Col>
+							<Col md="6" sm="12">
+								<FormGroup>
+									<Label for="kelurahan">Kelurahan</Label>
+									<Input type="text" id="kelurahan" placeholder="ex: Cilandak" />
+								</FormGroup>
+							</Col>
+							<Col md="6" sm="12">
+								<FormGroup>
+									<Label for="kecamatan">Kecamatan</Label>
+									<Input type="text" id="kecamatan" placeholder="ex: Kby. Baru" />
+								</FormGroup>
+							</Col>
+							<Col md="6" sm="12">
+								<FormGroup>
+									<Label for="city">Kota</Label>
+									<Input type="text" id="city" placeholder="ex: Jakarta Selatan" />
+								</FormGroup>
+							</Col>
+							<Col md="6" sm="12">
+								<FormGroup>
+									<Label for="provience">Provinsi</Label>
+									<Input type="text" id="provience" placeholder="ex: DKI Jakarta" />
+								</FormGroup>
+							</Col>
+							<Col md="6" sm="12">
+								<FormGroup>
+									<Label for="zipcode">Kode Pos</Label>
+									<Input type="number" id="zipcode" placeholder="ex: DKI Jakarta" />
+								</FormGroup>
 							</Col>
 							<Col className="d-flex justify-content-end flex-wrap mt-2" sm="12">
 								<Button.Ripple
-									onClick={() => history.push('/kominfo/employments/ppnpn')}
+									onClick={() => history.push('/kominfo/employments/pns')}
 									className="mr-1"
 									color="primary">
 									Save Changes
