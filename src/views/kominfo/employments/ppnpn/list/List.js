@@ -2,6 +2,10 @@ import React from 'react';
 import {
 	Card,
 	CardBody,
+	CardHeader,
+	CardTitle,
+	FormGroup,
+	Label,
 	Input,
 	Row,
 	Col,
@@ -10,17 +14,31 @@ import {
 	DropdownMenu,
 	DropdownItem,
 	DropdownToggle,
+	Collapse,
+	Spinner,
 	Button,
 } from 'reactstrap';
+import Select from 'react-select';
 import axios from 'axios';
 import { ContextLayout } from '../../../../../utility/context/Layout';
 import { AgGridReact } from 'ag-grid-react';
-import { Edit, Trash2, ChevronDown, Clipboard, Printer, Download, Eye } from 'react-feather';
+import {
+	Edit,
+	Trash2,
+	ChevronDown,
+	Clipboard,
+	Printer,
+	Download,
+	Eye,
+	RotateCw,
+	X,
+} from 'react-feather';
 import { history } from '../../../../../history';
 import '../../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss';
 import '../../../../../assets/scss/pages/users.scss';
 import { Fragment } from 'react';
 import BreadCrumbs from '../../../../../components/@vuexy/breadCrumbs/BreadCrumb';
+import classnames from 'classnames';
 class UsersList extends React.Component {
 	state = {
 		rowData: null,
@@ -36,6 +54,23 @@ class UsersList extends React.Component {
 		defaultColDef: {
 			sortable: true,
 		},
+		fieldFilters: [
+			'Nama Pegawai',
+			'Status Pegawai',
+			'Golongan',
+			'Satuan Kerja',
+			'Pangkat',
+			'Jabatan',
+			'Jenis Kelamin',
+			'Jenjang Sekolah',
+			'Jurusan',
+		],
+		ruleFilters: [
+			{ value: 'All', label: 'Semua' },
+			{ value: 'User', label: 'Filter Data 1' },
+			{ value: 'Staff', label: 'Filter Data 2' },
+			{ value: 'Admin', label: 'Filter Data 3' },
+		],
 		searchVal: '',
 		columnDefs: [
 			{
@@ -275,6 +310,70 @@ class UsersList extends React.Component {
 					breadCrumbActive="PPNPN"
 				/>
 				<Row className="app-user-list">
+					<Col sm="12">
+						<Card
+							className={classnames('card-action card-reload', {
+								'd-none': this.state.isVisible === false,
+								'card-collapsed': this.state.status === 'Closed',
+								closing: this.state.status === 'Closing...',
+								opening: this.state.status === 'Opening...',
+								refreshing: this.state.reload,
+							})}>
+							<CardHeader>
+								<CardTitle>Filters</CardTitle>
+								<div className="actions">
+									<ChevronDown
+										className="collapse-icon mr-50"
+										size={15}
+										onClick={this.toggleCollapse}
+									/>
+									<RotateCw
+										className="mr-50"
+										size={15}
+										onClick={() => {
+											this.refreshCard();
+											this.gridApi.setFilterModel(null);
+										}}
+									/>
+									<X size={15} onClick={this.removeCard} />
+								</div>
+							</CardHeader>
+							<Collapse
+								isOpen={this.state.collapse}
+								onExited={this.onExited}
+								onEntered={this.onEntered}
+								onExiting={this.onExiting}
+								onEntering={this.onEntering}>
+								<CardBody>
+									{this.state.reload ? <Spinner color="primary" className="reload-spinner" /> : ''}
+									<Row>
+										{this.state.fieldFilters.map(field => (
+											<Col lg="4" md="6" sm="12" className="mb-1">
+												<FormGroup className="mb-0">
+													<Label for="role">{field}</Label>
+													<Select
+														className="React"
+														classNamePrefix="select"
+														defaultValue={this.state.ruleFilters[0]}
+														name="role"
+														options={this.state.ruleFilters}
+														onChange={e => {
+															this.setState(
+																{
+																	role: e.value,
+																},
+																() => this.filterData('role', this.state.role.toLowerCase())
+															);
+														}}
+													/>
+												</FormGroup>
+											</Col>
+										))}
+									</Row>
+								</CardBody>
+							</Collapse>
+						</Card>
+					</Col>
 					<Col sm="12">
 						<Card>
 							<CardBody>
