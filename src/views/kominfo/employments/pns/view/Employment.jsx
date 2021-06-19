@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, FormGroup, Form, Input, Label } from 'reactstrap';
-import { slugify } from '../../../../../utility/helper';
+import { strToName } from '../../../../../utility/helper';
 
 const fields = [
 	'NIP',
@@ -30,8 +30,13 @@ const Employment = props => {
 				{fields.map((field, index) => (
 					<Col key={index} md="6" sm="12">
 						<FormGroup>
-							<Label for={slugify(field)}>{field}</Label>
-							<Input type="text" id={slugify(field)} name={slugify(field)} placeholder={field} />
+							<Label for={strToName(field)}>{field}</Label>
+							<Input
+								type="text"
+								id={strToName(field)}
+								name={strToName(field)}
+								placeholder={field}
+							/>
 						</FormGroup>
 					</Col>
 				))}

@@ -23,6 +23,7 @@ import 'flatpickr/dist/themes/light.css';
 import '../../../../../assets/scss/plugins/forms/flatpickr/flatpickr.scss';
 import Personal from './Personal';
 import Employment from './Employment';
+import OtherDatas from './OtherDatas';
 class UserView extends React.Component {
 	state = {
 		activeTab: '1',
@@ -183,10 +184,7 @@ class UserView extends React.Component {
 										<Employment />
 									</TabPane>
 									<TabPane tabId="3">
-										<p>
-											Reference site about Lorem Ipsum, giving information on its origins, as well
-											as a random Lipsum generator.
-										</p>
+										<OtherDatas />
 									</TabPane>
 								</TabContent>
 							</CardBody>

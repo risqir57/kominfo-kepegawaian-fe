@@ -188,6 +188,11 @@ class AppRouter extends React.Component {
 					/>
 					<AppRoute
 						exact
+						path="/kominfo/employments/pns/:id/more-actions/:action"
+						component={kominfoEmploymentPnsView}
+					/>
+					<AppRoute
+						exact
 						path="/kominfo/employments/pns/:id/edit"
 						component={kominfoEmploymentPnsEdit}
 					/>
@@ -195,6 +200,11 @@ class AppRouter extends React.Component {
 					<AppRoute
 						exact
 						path="/kominfo/employments/ppnpn/:id"
+						component={kominfoEmploymentPpnpnView}
+					/>
+					<AppRoute
+						exact
+						path="/kominfo/employments/ppnpn/:id/more-actions/:action"
 						component={kominfoEmploymentPpnpnView}
 					/>
 					<AppRoute
